@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Listings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .header {
+            background: #007bff;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .listing {
+            background: #ffffff;
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+        .listing:hover {
+            box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+        }
+        .price {
+            color: #000000; /* Black for important text */
+            font-size: 1.2em;
+            font-weight: bold; /* Bold for emphasis */
+        }
+        .stock {
+            color: #6c757d; /* Grey for less important text */
+            font-weight: bold; /* Bold for emphasis */
+        }
+        .expired {
+            color: #6c757d; /* Grey for less important text */
+            font-weight: bold; /* Bold for emphasis */
+        }
+        .featured {
+            color: #6c757d; /* Grey for less important text */
+            font-weight: bold; /* Bold for emphasis */
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>All Listings</h1>
+</div>
+<div class="container">
+    <div th:each="listing : ${listings}" class="listing">
+        <h2 th:text="${listing.name}">Listing Name</h2>
+        <p>ID: <span th:text="${listing.listingId}">1234</span></p>
+        <p class="price">Price: $<span th:text="${listing.price}">100</span></p>
+        <p class="stock">Stock: <span th:text="${listing.stock}">10</span></p>
+        <p>Seller ID: <span th:text="${listing.seller}">abcd</span></p>
+        <p>Order Counter: <span th:text="${listing.orderCounter}">0</span></p>
+        <p th:if="${listing.expiredDate != null}" class="expired">Expired Date: <span th:text="${listing.expiredDate}">N/A</span></p>
+        <p th:if="${listing.featuredListing}" class="featured">Featured Listing!</p>
+    </div>
+</div>
+</body>
+</html>
